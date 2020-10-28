@@ -12,7 +12,7 @@ import java.util.Properties;
  * @author jiashubing
  * @since 2020/10/28
  */
-public class ButtonMain {
+public class DelButtonMain {
 
     // 在A、B两个环境分别执行下面SQL，分别填写到oldService.properties 、newService.properties
     // SELECT group_concat(service_code,"=",service_id) FROM workbench.wb_service WHERE service_id IN (select service_id from workbench.wb_service where application_id in (select application_id from workbench.wb_application where application_id in (select application_id from workbench.wb_label_application_relation where label_id in (select label_id from workbench.wb_label where label_type='domain' and label_name='贾树丙领域')))) GROUP BY service_code;
@@ -26,10 +26,8 @@ public class ButtonMain {
     private static final String buttonName = "button.txt";
 
     public static void main(String[] args) {
-        loadPorperties(oldMap, oldFileName);
-        loadPorperties(newMap, newFileName);
 
-        InputStream fr = ButtonMain.class.getResourceAsStream(buttonName);
+        InputStream fr = DelButtonMain.class.getResourceAsStream(buttonName);
         BufferedReader in = new BufferedReader(new InputStreamReader(fr));
         String oneLine;
         try {
@@ -46,25 +44,6 @@ public class ButtonMain {
         }
     }
 
-    private static void loadPorperties(Map<String, String> map, String fileName) {
-        InputStream in = ButtonMain.class.getResourceAsStream(fileName);
-        Properties props = new Properties();
-        try {
-            props.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (Map.Entry<Object, Object> entry : props.entrySet()) {
-            map.put(entry.getKey().toString(), entry.getValue().toString());
-        }
-
-//        for (Map.Entry<String, String> item : map.entrySet()) {
-//            System.out.println(item.getKey());
-//        }
-
-    }
-
     private static boolean deal(String str) {
 
         for (Map.Entry<String, String> entry : oldMap.entrySet()) {
@@ -73,7 +52,7 @@ public class ButtonMain {
                 if (tmp == null || "".equals(tmp)) {
                     System.out.println("新环境列没有对应的serviceId");
                 }
-                str = str.replaceFirst(entry.getValue(), tmp);
+                str.replaceFirst(entry.getValue(), tmp);
                 System.out.println(str);
                 return true;
             }
