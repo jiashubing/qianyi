@@ -1,9 +1,12 @@
 package service;
 
 /**
+ * 废弃了，因为补鞥呢改劲松文件，所以还是直接替换SQL比较稳定
+ *
  * @author jiashubing
  * @since 2020/10/27
  */
+@Deprecated
 public class ServiceVo {
     private String tenantId;
     private String serviceCode;

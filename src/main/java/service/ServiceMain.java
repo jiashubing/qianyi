@@ -5,9 +5,12 @@ import com.alibaba.fastjson.JSONArray;
 import java.util.List;
 
 /**
+ * 废弃了，因为补鞥呢改劲松文件，所以还是直接替换SQL比较稳定
+ *
  * @author jiashubing
  * @since 2020/10/27
  */
+@Deprecated
 public class ServiceMain {
     private static String oldStr = "http://dev.nbf.qm.cn/";
     private static String newStr = "http://stage.nbf.faw.cn/";
